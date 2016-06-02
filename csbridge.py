@@ -1,3 +1,4 @@
+#!/usr/bin/python -u
 '''
 Campbell Scientific Bridge for BayEOS 
 - Reads observation data in toa5 format from logger using http interface  

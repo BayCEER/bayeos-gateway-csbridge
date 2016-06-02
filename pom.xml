@@ -1,8 +1,8 @@
 <project>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.unibayreuth.bayceer</groupId>
-	<artifactId>bayeosgateway-csbridge</artifactId>
-	<version>1.0.0</version>
+	<artifactId>bayeos-gateway-csbridge</artifactId>
+	<version>1.0.1</version>
 	<properties>		
 		<name>csbridge</name>
 	</properties>
@@ -46,17 +46,48 @@
 								<type>file</type>
 								<src>${basedir}/${name}_start.sh</src>
 								<dst>/usr/sbin/${name}_start.sh</dst>
+								<mapper>
+									<type>perm</type>
+									<filemode>700</filemode>									
+								</mapper>
 							</data>
 							<data>
 								<type>file</type>
 								<src>${basedir}/${name}.py</src>
 								<dst>/usr/sbin/${name}.py</dst>
+								<mapper>
+									<type>perm</type>
+									<filemode>700</filemode>									
+								</mapper>
 							</data>
 					</dataSet>
 					</configuration>
 				</execution>
 			</executions>
 		</plugin>
+		<plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>install</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>			
+			  <outputDirectory>${publish.debian.path}</outputDirectory>
+              <resources>          
+                <resource>
+                 <directory>${project.build.directory}</directory>                  
+				 <include>${project.artifactId}-${project.version}.deb</include>
+                </resource>
+              </resources>              
+            </configuration>            
+          </execution>
+        </executions>
+      </plugin>
+		
 	</plugins>
 	</build>
 </project>
