@@ -22,6 +22,7 @@ import sys
 from pytz import timezone
 import pytz
 import logging
+from Crypto.Protocol.Chaffing import Chaff
 
 
 log = logging.getLogger('root')
@@ -145,7 +146,11 @@ def fetchAndSaveData(writer,host,table,tz,since,origin):
             values = {}   
             for index, cha in enumerate(key[1:]):
                 if row[index+1] != '':
-                    values[cha] = float(row[index+1])                                                                                          
+                    log.debug("Empty value for channel {0} at {1}.".format(cha,row[0]))
+                elif row[index+1] == 'NAN':
+                    log.debug("NAN value for channel {0} at {1}.".format(cha,row[0]))
+                else: 
+                    values[cha] = float(row[index+1])                                                                                                                              
             writer.save(values,value_type=0x61,timestamp=timestamp,origin=origin)
             lrt = dt            
             rc = rc + 1;
