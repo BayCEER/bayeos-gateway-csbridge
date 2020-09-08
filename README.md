@@ -2,11 +2,16 @@
 
 This software allows you to connect Campbell Scientific loggers to a BayEOS Gateway. 
 
-Main characteristics:
+## Main characteristics:
 + Runs as a daemon on debian systems 
 + Polls logger tables for new observation data
 + Saves data in a local queue
 + Sends data asynchronous to a BayEOS Gateway
+
+## Version History
+|Date|Version|Notes| 
+|----|-------|-----|
+|2018-05-06|1.1|Initial import with most-recent mode|
 
 
 
