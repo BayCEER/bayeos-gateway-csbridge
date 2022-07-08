@@ -7,7 +7,7 @@ Campbell Scientific Bridge for BayEOS
 Created on 06.07.2022
 '''
 
-from socket import socket
+import socket
 from time import sleep
 from bayeosgatewayclient import BayEOSWriter, BayEOSSender
 from configparser import ConfigParser
@@ -21,7 +21,7 @@ from campbell.logger import Logger
 from zoneinfo import ZoneInfo
 
 
-logging.basicConfig(format='%(asctime)s %(levelname)s:%(message)s') 
+logging.basicConfig(format='%(asctime)s %(levelname)s:%(message)s',level=logging.INFO) 
 
 SEC_BRIDGE = 'csbridge'
 SEC_GATEWAY = 'gateway'
@@ -30,8 +30,7 @@ LOGGER_NAN = "NAN"
 
 def main():
     conf = readConfig()    
-    logging.setLevel(str(conf.get(SEC_BRIDGE,'log_level')).upper())           
-
+    
     pa = conf.get(SEC_BRIDGE,'path')           
     writer = BayEOSWriter(pa, max_chunk=20000)              
     sender = BayEOSSender(pa,conf.get(SEC_BRIDGE,'name'), conf.get(SEC_GATEWAY,'url') + '/frame/saveFlat', conf.get(SEC_GATEWAY,'password'), conf.get(SEC_GATEWAY,'username'))
