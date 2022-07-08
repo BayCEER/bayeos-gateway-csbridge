@@ -1,9 +1,0 @@
-Package: [[name]]
-Version: [[version]]
-Section: misc
-Priority: optional
-Architecture: all
-Pre-Depends: python-bayeosgatewayclient, python-tz
-Depends: python (>=2.7)
-Description: Campbell Scientific Logger Bridge for BayEOS Gateway 
-Maintainer: oliver.archner@uni-bayreuth.de

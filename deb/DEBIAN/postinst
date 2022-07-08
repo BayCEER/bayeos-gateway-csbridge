@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -e
+
+# System user bayeos
+if ! getent passwd bayeos > /dev/null; then
+        adduser --quiet --system --no-create-home \
+            --shell /bin/bash --group --gecos "bayeos user" bayeos
+fi 
+
+# Files 
+chmod +x /usr/bin/csbridge.py
+chown bayeos:bayeos /etc/csbridge.conf
+chown bayeos:bayeos /usr/bin/csbridge.py
