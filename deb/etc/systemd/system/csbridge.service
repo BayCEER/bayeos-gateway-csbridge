@@ -1,7 +1,8 @@
 [Unit]
-Description=csbridge
+Description=csbridge service
 
 [Service]
+User=csbridge
 ExecStart=/usr/bin/csbridge.py
 
 [Install]

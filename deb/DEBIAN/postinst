@@ -1,13 +1,17 @@
 #!/bin/bash
 set -e
 
-# System user bayeos
-if ! getent passwd bayeos > /dev/null; then
+# System user csbridge
+if ! getent passwd csbridge > /dev/null; then
         adduser --quiet --system --no-create-home \
-            --shell /bin/bash --group --gecos "bayeos user" bayeos
+            --shell /bin/bash --group --gecos "csbridge user" csbridge
 fi 
 
 # Files 
 chmod +x /usr/bin/csbridge.py
-chown bayeos:bayeos /etc/csbridge.conf
-chown bayeos:bayeos /usr/bin/csbridge.py
+chown csbridge:csbridge /etc/csbridge.conf
+chown csbridge:csbridge /usr/bin/csbridge.py
+chown -R csbridge:csbridge /var/lib/csbridge
+
+systemctl enable csbridge --now
+systemctl start csbridge.service  

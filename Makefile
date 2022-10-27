@@ -1,4 +1,4 @@
-version=1.2.0
+version=1.2.1
 
 deploy: clean prepare package
 
@@ -9,7 +9,6 @@ prepare: clean
 	mkdir target
 	cp -r deb target/deb
 	sed -i 's/\[\[version\]\]/${version}/g' target/deb/DEBIAN/control
-	cp csbridge.service target/deb/etc/systemd/system
 	cp csbridge.py target/deb/usr/bin
 	chmod +x target/deb/usr/bin/csbridge.py
 	cp csbridge.conf target/deb/etc	
