@@ -1,13 +1,12 @@
 # Campbell Scientific Logger Bridge for BayEOS Gateway
 
-This software allows you to connect Campbell Scientific loggers to a BayEOS Gateway.
+This software allows you to connect Campbell Scientific loggers to a [BayEOS Gateway](https://github.com/BayCEER/bayeos-gateway).
 
 ## Main characteristics:
 
 - Runs as a systemd daemon on Debian systems
-- Polls logger tables for new observation data
-- Saves data in a local queue
-- Sends data asynchronous to a BayEOS Gateway
+- Polls logger tables for new observation data using the [python-campbell-logger](https://github.com/BayCEER/python-campbell-logger) module
+- Saves and sends data asynchronously to a BayEOS Gateway by using the [bayeos-gateway transport client](https://github.com/BayCEER/bayeosgatewayclient)
 
 ## Version History
 
