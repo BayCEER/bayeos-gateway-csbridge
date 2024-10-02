@@ -1,0 +1,9 @@
+[Unit]
+Description=csbridge service
+
+[Service]
+User=csbridge
+ExecStart=/usr/bin/csbridge.py
+
+[Install]
+WantedBy=multi-user.target

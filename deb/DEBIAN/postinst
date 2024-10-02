@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+# System user csbridge
+if ! getent passwd csbridge > /dev/null; then
+        adduser --quiet --system --no-create-home \
+            --shell /bin/bash --group --gecos "csbridge user" csbridge
+fi 
+
+# Files 
+chmod +x /usr/bin/csbridge.py
+chown csbridge:csbridge /etc/csbridge.conf
+chown csbridge:csbridge /usr/bin/csbridge.py
+chown -R csbridge:csbridge /var/lib/csbridge
+
+systemctl enable csbridge --now
+systemctl start csbridge.service  

@@ -1,4 +1,5 @@
 /target
+/tests
 .settings
 .pydevproject
 .project
