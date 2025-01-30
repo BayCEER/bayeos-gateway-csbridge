@@ -73,11 +73,9 @@ def fetchAndSaveData(writer,host,table,tz,lastRec,origin,conf, re=0):
     """   
     logging.info("Fetch data from {}".format(origin))
     logger = Logger('http://'+ host)     
-    if lastRec is None:
-        hours = int(conf.get(SEC_BRIDGE,'backfill_hours'))
-        lmin = logger.getClock() - timedelta(hours=hours)
-        logging.info("Get data since:{}".format(lmin))
-        data = logger.dataSinceTime("dl:{}".format(table),lmin)        
+    if lastRec is None:        
+        logging.info("Get most recent data")
+        data = logger.dataMostRecent("dl:{}".format(table),int(conf.get(SEC_BRIDGE,'most_recent')))        
     else:        
         logging.info("Get data since record:{}".format(lastRec))
         data = logger.dataSinceRecord("dl:{}".format(table),lastRec)   
@@ -124,7 +122,7 @@ def readConfig():
     if not conf.has_option(SEC_BRIDGE, 'path'):
         conf.set(SEC_BRIDGE, 'path', os.path.join(tempfile.gettempdir(),conf.get(SEC_BRIDGE,'name')))    
     if not conf.has_option(SEC_BRIDGE, 'most_recent'):
-        conf.set(SEC_BRIDGE, 'most_recent',str(10000))    
+        conf.set(SEC_BRIDGE, 'most_recent',str(50000))    
 
    
     return conf
