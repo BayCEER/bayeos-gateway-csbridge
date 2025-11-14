@@ -19,6 +19,7 @@ import sys
 import logging
 from campbell.logger import Logger
 from zoneinfo import ZoneInfo
+import configparser
 
 
 logging.basicConfig(format='%(asctime)s %(levelname)s:%(message)s',level=logging.INFO) 
@@ -112,7 +113,7 @@ def readConfig():
         Reads the config file and populates default values 
         @return ConfigParser
     """
-    conf = ConfigParser()
+    conf = configparser.ConfigParser()
     if sys.platform == 'win32':        
         conf.read('csbridge.conf')
     else:
