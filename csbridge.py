@@ -4,7 +4,6 @@ Campbell Scientific Bridge for BayEOS
 - Reads observation data from logger using http interface  
 - Saves data in BayEOS labeled frame format by bayeosgatewayclient 
 @author: oliver.archner@uni-bayreuth.de
-Created on 06.07.2022
 '''
 
 import socket
@@ -72,7 +71,7 @@ def fetchAndSaveData(writer,host,table,tz,lt,origin,conf,re=0):
     @param table: logger table name
     @param tz: time zone of logger datetime values as text
     @param lt: last record time as datetime or None
-    @returns lastRec: as integer
+    @returns lt: as datetime
     """   
     logging.info("Fetch data from {}".format(origin))
     logger = Logger('http://'+ host)     
